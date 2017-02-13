@@ -1,4 +1,10 @@
-# DSA-Python-
-A collection of Data structures and algorithms in Python from Ken Lambert book, that I learned and implemented. 
+# DSA-Python
+
+A collection of Algorithms in Python I code from various Internet resources, 
+and understand logic from wikipedia. 
+
+Find the best way to code it, quick and small. 
+
+
 
 
