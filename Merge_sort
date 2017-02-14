@@ -1,0 +1,44 @@
+""" Program: Merge_sort
+    Date: 14/2/2017 """
+    
+import random 
+    
+def merge_sort(items):
+    #Function of merge sort 
+    if len(items)> 1:
+        
+        mid= len(items)/2   #Make a midpoint and split
+        left= items[0:mid]
+        right= items[mid:]
+        
+        merge_sort(left) #recursive call to function 
+        merge_sort(right)
+        
+        l,r = 0,0 
+        
+        for i in range(len(items)):
+            
+            lval= left[l] if l < len(left) else None #Analyze left and right lists and make swaps
+            rval= right[r] if r < len(right) else None 
+            
+            if (lval and rval and lval < rval) or rval is None:
+                items[i]= lval 
+                l += 1 
+            elif (lval and rval and lval >= rval)or lval is None:
+                items[i]= rval 
+                r += 1
+            else:
+                raise Exception('could not merge, sub list size do not match main size')
+
+                 
+#Test the algorithm with random numbers. 
+rand_items= [random.randint(50,100)for c in range(22)]
+
+print 'Before: ', rand_items
+
+merge_sort(rand_items)
+
+print 'After: ', rand_items             
+         
+        
+        
