@@ -1,20 +1,23 @@
-def insertionSort(lyst):
-    i=1
-    while i<len(lyst):
-        itemToInsert= lyst[i]
-        j= i-1
-        while j>=0:
-            if itemToInsert<lyst[j]:
-                lyst[j+1]=lyst[j]
-                j -=1
-            else:
-                break
-        lyst[j+1]=itemToInsert
-        i += 1
-        
-        
-lyst = [24,44,12,22,21,7,13,18,11,10,33]
-insertionSort(lyst)
-print (lyst)
+""" Program: Insertion_sort 
+    Date: 14/2/2017 """
+    
+import random 
 
+def insertion_sort(items):
+    #implementation of insertion sort algorithm 
+    for i in range(1,len(items)):
+        j=i 
+        while j>= 0 and (items[j] < items[j-1]):
+            items[j],items[j-1]= items[j-1],items[j]#swap
+            j -= 1
+            
+
+#Test the algorithm with random numbers
+rand_items= [random.randint(-50,100)for c in range(32)]
+
+print 'Before: ', rand_items
+
+insertion_sort(rand_items)#calling the above method
+
+print 'After: ', rand_items
         
