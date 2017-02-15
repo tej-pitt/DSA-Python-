@@ -1,49 +1,32 @@
-""" Program: Quick sort algorithm
-    Author: Tejas Pitkar """
+""" Program: Quick_sort 
+    Date: 15/2/2017 """
     
-def quicksort(lyst):
-    quicksortHelper(lyst,0,len(lyst)-1)
-    
-def quicksortHelper(lyst,left,right):
-    if left < right:
-        pivotLocation= partition(lyst,left,right)
-        quicksortHelper(lyst,left, pivotLocation -1)
-        quicksortHelper(lyst,pivotLocation +1 , right)
+import random 
+
+def quick_sort(items):
+    #implement quick sort algorithm
+    if len(items) > 1:
+        pivot_ind = len(items)/2 #divide into 2 lists with pivot 
+        smaller = []
+        larger = []
         
+        for i, val in enumerate(items): #enumerate gives reliable index to iterable items.
+            if i!= pivot_ind:
+                if val < items[pivot_ind]: #if valuation less than pivot 
+                    smaller.append(val)
+                else:
+                    larger.append(val) #if valuation greater than pivot 
+            
+        quick_sort(smaller) #recursive function on 2 lists 
+        quick_sort(larger)
+        items[:]= smaller + [items[pivot_ind]] + larger #final merging of all lists 
 
-def partition(lyst,left,right):
-    #Find the pivot and exchange with the last item 
-    middle= (left + right)//2
-    pivot= lyst[middle]
-    lyst[middle]=lyst[right]
-    lyst[right]= pivot 
-    #Set boundary point to first position
-    boundary= left 
-    #Move items less than pivot to the left 
-    for index in range(left, right):
-        if lyst[index] < pivot:
-            swap(lyst,index,boundary)
-            boundary += 1
-    # Exchange the pivot item and boundary item
-    swap(lyst,right,boundary)
-    return boundary
-    #Customary swap function to exchange items 
-def swap(lyst,i,j):
-    #Exchanges items at locations i and j
-    temp = lyst[i]
-    lyst[i]= lyst[j]
-    lyst[j]= temp
-    
-import random
 
-def main(size=30, sort=quicksort):
-    lyst= []
-    for count in range(size):
-        lyst.append(random.randint(1,size+1))
-    print (lyst)
-    sort (lyst)
-    print (lyst)
+#test the algo with random numbers        
+rand_items= [random.randint(-50,100)for c in range(32)]
 
-if __name__ == "__main__":
-     main()
-     
+print 'Before: ', rand_items
+
+quick_sort(rand_items)
+
+print 'After: ', rand_items       
